@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+
+<head>
+  <title>Synthwave '80s Bread 3.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Outfit&family=Paytone+One&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="animations.css">
+  <link rel="stylesheet" type="text/css" href="grid.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: no-repeat linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 0, 150, 1) 66%, rgba(0, 0, 0, 1) 100%);
+      background-color: rgba(0, 0, 0, 1);
+      height: 100vh;
+    }
+
+    article {
+      width: 100%;
+      max-width: 44rem;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    h2 {
+      font-family: "Paytone One", sans-serif;
+      text-transform: uppercase;
+      padding: 13rem 0;
+    }
+
+    p {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      line-height: 2rem;
+      text-rendering: optimizelegibility;
+    }
+
+    article p a {
+      border-bottom: 2px dotted #03ffed;
+    }
+
+    code {
+      padding: 1.5rem;
+      margin: 0 -1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .9rem;
+      backdrop-filter: blur(14px);
+      background-color: rgb(35 31 32 / 0.7);
+      display: block;
+      white-space: pre-wrap;
+      border-radius: .5rem;
+    }
+
+    details {
+      background-color: rgb(35 31 32 / 0.7);
+      backdrop-filter: blur(14px);
+      border-radius: .5rem;
+      border: 2px solid transparent;
+      padding: 0.5em 1.5em 0;
+      font-family: 'Outfit', sans-serif;
+      margin: 0 -1.5rem;
+    }
+
+    summary {
+      font-weight: bold;
+      margin: -0.5rem -0.5rem 0;
+      padding: 0.5rem;
+    }
+
+    details[open] {
+      padding: 0.5rem 1.5rem 1.5rem;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid linear-gradient(to right, rgba(255, 0, 150, 1), rgba(255, 100, 200, 1));
+      margin-bottom: 0.5em;
+    }
+
+
+    .header-container {
+      position: relative;
+      /* So that absolute positioning works as expected */
+      height: 100vh;
+      /* Take up the full viewport height */
+      width: 100%;
+      /* <-- Add this */
+      z-index: 1;
+      /* Layering order */
+      overflow: hidden;
+      /* Hide overflow elements */
+      margin: 0;
+      padding: 0;
+    }
+
+    .content-container {
+      /* Your styling here */
+      height: 200vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+    }
+
+    .bread-icon {
+      font-size: 10em;
+      position: absolute;
+      animation: bobbing 4s infinite ease-in-out;
+      transition: font-size 0.5s, top 0.5s;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+    }
+
+    .brad-icon {
+      position: absolute;
+      /* Changed from relative to absolute */
+      top: 50%;
+      /* Align to the vertical middle */
+      left: 50%;
+      /* Align to the horizontal middle */
+      z-index: 4;
+      /* Keep it on top */
+      animation: bobbing 4s infinite ease-in-out;
+      transform: translate(-50%, -50%);
+      /* Center it */
+      mix-blend-mode: hard-light;
+
+    }
+
+    .brad-icon img {
+      /* We'll remove top and left here */
+      width: 14.6rem;
+      height: 10rem;
+      transform: skewX(18deg) skewY(10deg);
+      /* Removed translate(-50%, -50%) */
+      z-index: 3;
+      margin-top: -0.6rem;
+      margin-left: -5.5rem;
+      position: relative;
+    }
+
+    .player {
+      right: 10px;
+      top: 20px;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      z-index: 4;
+    }
+
+
+
+    /* Styling the audio player buttons */
+    .player button {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) padding-box,
+        linear-gradient(to right, rgba(255, 0, 150, 1), rgba(255, 100, 200, 1)) border-box;
+      border-radius: 12px;
+      /* feel free to adjust */
+      height: 40px;
+      border: 2px solid transparent;
+      color: white;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin: 5px;
+      font-family: 'Press Start 2P', cursive;
+      /* Optional: To match the rest of your site */
+    }
+
+    .player button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) padding-box,
+        linear-gradient(to bottom, rgba(255, 0, 150, 1), rgba(255, 100, 200, 1)) border-box;
+    }
+
+    .player button.home {
+      bottom: 1rem;
+      position: fixed;
+    }
+
+    svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 33%;
+    }
+
+    /* Add the glow animation to the text */
+    .text {
+      animation: glow 4s linear infinite;
+      transition: font-size 0.5s;
+      -webkit-text-stroke: 3px #00ffee;
+      font-size: 3.5rem;
+      letter-spacing: .25rem;
+      font-family: 'Press Start 2P';
+      stroke: #00ffee;
+      stroke-width: 2;
+      font-weight: 500;
+      text-transform: uppercase;
+      z-index: 4;
+      position: absolute;
+      top: 73%;
+      left: 50%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      /* Ensure it's centered */
+      width: max-content;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      font-family: 'Press Start 2P';
+      color: white;
+      z-index: 4;
+      position: absolute;
+      top: 85%;
+      left: 50%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      text-align: center;
+      /* Ensure it's centered */
+    }
+
+    .subtitle a {
+      display: inline-block;
+      color: white;
+      transition: color 0.5s ease;
+    }
+
+    .subtitle a:hover {
+      animation: reverseGlow 1.15s ease-in infinite;
+    }
+
+    .neon-light {
+      color: #00ffec;
+      text-shadow: 0 0 5px #00ffeec1, 0 0 10px #00ffeec1, 0 0 15px #ff00de, 0 0 20px #ff00de, 0 0 25px #ff00de, 0 0 30px #ff00de, 0 0 35px #ff00de;
+      animation: flicker 10.5s infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header-container grid-container" id="header-container">
+    <div class="bread-icon" id="breadIcon">&#127838;</div>
+    <div class="brad-icon">
+      <img src="brad_2.png" alt="Brad">
+    </div>
+
+    <h1 class="text" id="breadText">Br<span>e</span>ad Pitt</h1>
+    <p class="subtitle neon-light">
+      <a href="#article" data-text="Press Start" class="smooth-scroll" id="startButton">Press Start</a>
+    </p>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <!-- Title: Bread Pitt -->
+
+      <!-- Stars -->
+      <circle cx="20%" cy="20%" r="0.5" fill="white" />
+      <circle cx="70%" cy="30%" r="0.5" fill="white" />
+      <circle cx="40%" cy="50%" r="0.5" fill="white" />
+      <circle cx="80%" cy="10%" r="0.5" fill="white" />
+      <circle cx="10%" cy="10%" r="0.5" fill="white" />
+      <circle cx="30%" cy="60%" r="0.5" fill="white" />
+      <circle cx="85%" cy="40%" r="0.5" fill="white" />
+      <circle cx="60%" cy="15%" r="0.5" fill="white" />
+      <circle cx="95%" cy="80%" r="0.5" fill="white" />
+      <circle cx="15%" cy="75%" r="0.5" fill="white" />
+      <circle cx="55%" cy="5%" r="0.5" fill="white" />
+      <circle cx="23%" cy="43%" r="0.5" fill="white" />
+      <circle cx="67%" cy="67%" r="0.5" fill="white" />
+      <circle cx="42%" cy="9%" r="0.5" fill="white" />
+      <circle cx="88%" cy="24%" r="0.5" fill="white" />
+    </svg>
+
+    <div class="player">
+      <audio id="audioElement" src="sleepless.mp3"></audio>
+      <button id="playButton">&#9654;</button>
+      <button id="pauseButton">&#9208;</button>
+      <button id="backToTop" style="display: none;" class="home">&#8682;</button>
+
+    </div>
+    <div id="firework"></div>
+  </div>
+  <div class="content-container" id="content-container">
+    <article id="article">
+      <h2>This shit is good yo!</h2>
+      <p>Bread is delicious!</p>
+
+      <code>.player {
+                right: 10px;
+        top: 20px;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 4;
+      }</code>
+
+      <p>
+        Fünf Minuten Ruhm ist <a href="#">Politikern</a> gewiss, die bekannt geben, auf eine Bundesratskandidatur zu
+        verzichten – selbst
+        jenen, die nie ernsthaft in Betracht gezogen wurden. </p>
+      <p>Im Jahr 2017 liess eine besondere Verzichtserklärung
+        aufhorchen. Sie wurde von keinem Politiker, sondern von einem Wirtschaftsführer abgegeben. Bankchef Sergio
+        Ermotti teilte mit: «Ich habe eine Aufgabe als CEO der UBS, die ich gerne mache, und ich strebe kein politisches
+        Amt an.» Vorausgegangen waren Gerüchte sowie ein Bericht der «Weltwoche», die auf der Frontseite titelte:
+        «Sergio Ermotti in den Bundesrat!» Gewählt wurde dann ein anderer Tessiner, Ignazio Cassis.</p>
+      <details>
+        <summary>Details</summary>
+        Something small enough to escape casual notice.
+      </details>
+
+      <p>
+        Inzwischen ist Ermotti zum zweiten Mal UBS-Chef. Er gebietet über die einzig verbliebene Schweizer Grossbank.
+        Diese Woche hat er mitgeteilt, dass die UBS die 167-jährige Credit Suisse komplett integriert. Ohne politische
+        Zugeständnisse. Darum schluckt er auch das CS-Inlandgeschäft.
+
+        Group Chief Executive Officer of Swiss Bank UBS Sergio P. Ermotti looks on, during the presentation of the
+        second quarter 2023 and first results since the Credit Suisse merger, in Zurich, Switzerland, ...
+        Banker und vieles mehr: Sergio Ermotti diese Woche vor den Medien, als er die Vollintegration der Credit Suisse
+        bekanntgab.bild: keystone
+        Das ist durchaus nachvollziehbar. Die UBS hat den Kauf der CS nicht gesucht, die morsche Bank wurde ihr von den
+        Bundesbehörden untergejubelt, um eine weltweite Finanzkrise abzuwenden. Ermotti findet, die UBS habe ihre
+        Schuldigkeit getan. Sein Auftritt war eine Machtdemonstration, wenngleich er rhetorisch und ästhetisch darum
+        bemüht war, diesen Eindruck zu dämpfen: keine Krawatte, heller Anzug und Sensibilität für all jene, die den Job
+        verlieren.
+
+        In der Tat ist Ermotti viel mächtiger, als es ein Bundesrat sein kann, und seit Alfred Escher hat es wohl auch
+        kaum mehr einen so einflussreichen Wirtschaftsführer gegeben. Der Chef der XXL-UBS entscheidet jetzt …
+
+        Über die Wahrnehmung des Schweizer Finanzplatzes in der Welt, denn global wird dieser mit UBS gleichgesetzt.
+        Ermotti, der Aussenminister.
+        Über die Kreditkonditionen für Hunderttausende von Klein- und Mittelunternehmen sowie die Vergabekriterien am
+        Hypothekenmarkt. Ermotti, der Wirtschaftsminister.
+        Über die Einnahmen der öffentlichen Hand. Schon vor der CS-Übernahme war die UBS die grösste Steuerzahlerin im
+        Land, sie lieferte in den letzten zehn Jahren 6 Milliarden Franken ab, ihre Angestellten nochmals 7 Milliarden.
+        Ermotti, der Finanzminister.
+        Über Sein oder Nichtsein von Events, Institutionen und Vereinen, denn die CS war der grösste Sponsor. Ermotti,
+        der Kultur- und Sportminister.
+        Allein beim vergleichsweise nebensächlichen Thema Sponsoring zeigt sich die unheimliche Macht eines einzigen
+        Mannes. Ermotti bewirkt mit Daumen hoch oder Daumen runter: ob das Zurich Film Festival in dieser Form
+        weitergeführt werden kann, das von CS-Geld abhängig ist; ob das Zürcher Stadionprojekt am Hardturm realisiert
+        wird oder nicht; ob die Fussball-Nationalteams künftig weiterhin Millionen zur Verfügung haben – just 2025, wenn
+        die bisherige Zusicherung wegfällt, findet hierzulande die Frauen-EM statt.
+
+        Was tun also? Beten für Ermotti?
+        Folgenreicher als diese Entscheide ist, wie gut die UBS geschäftet. Hier sind nicht nur Veranstaltungen, sondern
+        ist ein ganzes Land der UBS und ihrem Chef ausgeliefert. Das «Too big to fail»-Problem ist hinlänglich
+        diskutiert, aber noch nicht gelöst worden, und man fragt sich je länger, je mehr: Lässt es sich überhaupt lösen?
+        Zweifel sind angebracht, solange man beides will, einen globalen Finanzplatz mit Grossbank und zugleich keine
+        Haftungsrisiken für den Bund.
+
+        Was tun also? Beten, dass Sergio Ermotti und seine (noch) 120'000 Angestellten alles richtig machen? Das wird
+        nicht reichen.
+
+        Trotz begrenzter Wirkung braucht es regulatorische Anpassungen dort, wo sich Risiken für die Steuerzahler
+        reduzieren lassen. Zudem müssen die Rollen von Nationalbank und Finanzmarktaufsicht überprüft werden, die beim
+        CS-Kollaps nicht geglänzt haben. Und die Konkurrenten der UBS sind gefordert, aus dem Verschwinden der Credit
+        Suisse Kapital zu schlagen und den Wettbewerb zu beleben.
+
+        Eines ist klar: Auch wenn Ermotti nun das Land zu Füssen liegt, er maximiert nicht das Allgemeinwohl, sondern
+        das Wohl von Kunden und Aktionären. Sergio Ermotti ist Banker, nicht Bundesrat. (bzbasel.ch)
+      </p>
+
+    </article>
+  </div>
+  <script>
+    const audioElement = document.getElementById('audioElement');
+    const playButton = document.getElementById('playButton');
+    const pauseButton = document.getElementById('pauseButton');
+    const backToTopButton = document.getElementById('backToTop');
+    const startButton = document.getElementById('startButton')
+
+    playButton.addEventListener('click', function () {
+      audioElement.play();
+    });
+
+    startButton.addEventListener('click', function () {
+      audioElement.play();
+    });
+
+    pauseButton.addEventListener('click', function () {
+      audioElement.pause();
+    });
+
+
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>

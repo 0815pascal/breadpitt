@@ -1,0 +1,32 @@
+.firework {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 2;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(0, 255, 238, 0.9) 30%, rgba(0, 128, 128, 0.7) 50%, rgba(0, 0, 128, 0.5) 70%, transparent);
+}
+
+.random-explode {
+    animation: randomExplode 6s ease-out forwards;
+}
+
+@keyframes randomExplode {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(var(--scale, 3));
+        /* Use --scale or default to 3 */
+        opacity: 0;
+    }
+}
+
+.star {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+}

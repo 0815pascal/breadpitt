@@ -1,0 +1,48 @@
+@keyframes bobbing {
+
+    0%,
+    100% {
+      transform: translate(-50%, -50%) translateY(0);
+    }
+
+    50% {
+      transform: translate(-50%, -50%) translateY(-20px);
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      filter: drop-shadow(0 0 10px #00ffeec1) drop-shadow(0 0 10px #00ffeec1);
+    }
+
+    50% {
+      filter: drop-shadow(0 0 2px #00ffeec1) drop-shadow(0 0 2px #00ffeec1);
+    }
+
+    100% {
+      filter: drop-shadow(0 0 10px #00ffeec1) drop-shadow(0 0 10px #00ffeec1);
+    }
+  }
+
+  @keyframes reverseGlow {
+
+    0%,
+    100% {
+      filter: drop-shadow(0 0 1px #ff00ff) drop-shadow(0 0 1px #ff00ff);
+    }
+
+    50% {
+      filter: drop-shadow(0 0 6px #ff00ff) drop-shadow(0 0 6px #ff00ff);
+    }
+  }
+
+  @keyframes flicker {
+    0%, 88%, 95%, 98%, 99% {
+      opacity: 1;
+      text-shadow: 0 0 5px #00ffeec1, 0 0 10px #00ffeec1, 0 0 15px #ff00de, 0 0 20px #ff00de, 0 0 25px #ff00de, 0 0 30px #ff00de, 0 0 35px #ff00de;
+    }
+    89%, 92%, 96%, 97%, 100% {
+      opacity: 0.5;
+      text-shadow: none;
+    }
+  }
