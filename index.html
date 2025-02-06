@@ -22,7 +22,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: no-repeat linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 0, 150, 1) 66%, rgba(0, 0, 0, 1) 100%);
+      background: no-repeat linear-gradient(to bottom, rgb(6, 4, 4) 0%, rgba(255, 0, 150, 1) 66%, rgba(0, 0, 0, 1) 100%);
       background-color: rgba(0, 0, 0, 1);
       height: 100vh;
     }
@@ -30,6 +30,8 @@
     article {
       width: 100%;
       max-width: 44rem;
+      margin: 0 auto;
+      padding: 1rem;
     }
 
     a {
@@ -91,24 +93,17 @@
       margin-bottom: 0.5em;
     }
 
-
     .header-container {
       position: relative;
-      /* So that absolute positioning works as expected */
       height: 100vh;
-      /* Take up the full viewport height */
       width: 100%;
-      /* <-- Add this */
       z-index: 1;
-      /* Layering order */
       overflow: hidden;
-      /* Hide overflow elements */
       margin: 0;
       padding: 0;
     }
 
     .content-container {
-      /* Your styling here */
       height: 200vh;
       color: white;
       display: flex;
@@ -129,26 +124,18 @@
 
     .brad-icon {
       position: absolute;
-      /* Changed from relative to absolute */
       top: 50%;
-      /* Align to the vertical middle */
       left: 50%;
-      /* Align to the horizontal middle */
       z-index: 4;
-      /* Keep it on top */
       animation: bobbing 4s infinite ease-in-out;
       transform: translate(-50%, -50%);
-      /* Center it */
       mix-blend-mode: hard-light;
-
     }
 
     .brad-icon img {
-      /* We'll remove top and left here */
       width: 14.6rem;
       height: 10rem;
       transform: skewX(18deg) skewY(10deg);
-      /* Removed translate(-50%, -50%) */
       z-index: 3;
       margin-top: -0.6rem;
       margin-left: -5.5rem;
@@ -164,14 +151,10 @@
       z-index: 4;
     }
 
-
-
-    /* Styling the audio player buttons */
     .player button {
       background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) padding-box,
         linear-gradient(to right, rgba(255, 0, 150, 1), rgba(255, 100, 200, 1)) border-box;
       border-radius: 12px;
-      /* feel free to adjust */
       height: 40px;
       border: 2px solid transparent;
       color: white;
@@ -179,7 +162,6 @@
       cursor: pointer;
       margin: 5px;
       font-family: 'Press Start 2P', cursive;
-      /* Optional: To match the rest of your site */
     }
 
     .player button:hover {
@@ -200,7 +182,6 @@
       height: 33%;
     }
 
-    /* Add the glow animation to the text */
     .text {
       animation: glow 4s linear infinite;
       transition: font-size 0.5s;
@@ -216,9 +197,7 @@
       position: absolute;
       top: 73%;
       left: 50%;
-      /* Center horizontally */
       transform: translate(-50%, -50%);
-      /* Ensure it's centered */
       width: max-content;
     }
 
@@ -230,10 +209,8 @@
       position: absolute;
       top: 85%;
       left: 50%;
-      /* Center horizontally */
       transform: translate(-50%, -50%);
       text-align: center;
-      /* Ensure it's centered */
     }
 
     .subtitle a {
@@ -251,6 +228,45 @@
       text-shadow: 0 0 5px #00ffeec1, 0 0 10px #00ffeec1, 0 0 15px #ff00de, 0 0 20px #ff00de, 0 0 25px #ff00de, 0 0 30px #ff00de, 0 0 35px #ff00de;
       animation: flicker 10.5s infinite;
     }
+
+    /* Responsive adjustments for mobile screens */
+    @media only screen and (max-width: 600px) {
+  
+
+      .text {
+        font-size: 3rem;
+        top: 63%;
+        max-width: min-content;
+        text-align: center;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        top: 78%;
+      }
+
+      h2 {
+        padding: 8rem 1rem 4rem 1rem;
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+        padding: 0 1rem;
+      }
+
+      .player {
+        right: 5px;
+        top: 10px;
+      }
+
+      .player button {
+        height: 35px;
+        padding: 8px 15px;
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 
@@ -265,7 +281,6 @@
     <p class="subtitle neon-light">
       <a href="#article" data-text="Press Start" class="smooth-scroll" id="startButton">Press Start</a>
     </p>
-
 
     <svg xmlns="http://www.w3.org/2000/svg">
       <!-- Title: Bread Pitt -->
@@ -293,90 +308,30 @@
       <button id="playButton">&#9654;</button>
       <button id="pauseButton">&#9208;</button>
       <button id="backToTop" style="display: none;" class="home">&#8682;</button>
-
     </div>
     <div id="firework"></div>
   </div>
   <div class="content-container" id="content-container">
     <article id="article">
-      <h2>This shit is good yo!</h2>
-      <p>Bread is delicious!</p>
+      <h2>From Star Fox to Code Baker: The 90s Odyssey of Bread</h2>
+      <p>Bread was a kid of the 90s, back when the Super Nintendo was all the rage and Saturday mornings were defined by cereal bowls bigger than a horse trough. He lived in a cozy town, not particularly known for anything, but that hardly mattered to Bread. He lived for two things: computers and Star Fox.</p>
 
-      <code>.player {
-                right: 10px;
-        top: 20px;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        z-index: 4;
-      }</code>
-
-      <p>
-        Fünf Minuten Ruhm ist <a href="#">Politikern</a> gewiss, die bekannt geben, auf eine Bundesratskandidatur zu
-        verzichten – selbst
-        jenen, die nie ernsthaft in Betracht gezogen wurden. </p>
-      <p>Im Jahr 2017 liess eine besondere Verzichtserklärung
-        aufhorchen. Sie wurde von keinem Politiker, sondern von einem Wirtschaftsführer abgegeben. Bankchef Sergio
-        Ermotti teilte mit: «Ich habe eine Aufgabe als CEO der UBS, die ich gerne mache, und ich strebe kein politisches
-        Amt an.» Vorausgegangen waren Gerüchte sowie ein Bericht der «Weltwoche», die auf der Frontseite titelte:
-        «Sergio Ermotti in den Bundesrat!» Gewählt wurde dann ein anderer Tessiner, Ignazio Cassis.</p>
-      <details>
-        <summary>Details</summary>
-        Something small enough to escape casual notice.
-      </details>
-
-      <p>
-        Inzwischen ist Ermotti zum zweiten Mal UBS-Chef. Er gebietet über die einzig verbliebene Schweizer Grossbank.
-        Diese Woche hat er mitgeteilt, dass die UBS die 167-jährige Credit Suisse komplett integriert. Ohne politische
-        Zugeständnisse. Darum schluckt er auch das CS-Inlandgeschäft.
-
-        Group Chief Executive Officer of Swiss Bank UBS Sergio P. Ermotti looks on, during the presentation of the
-        second quarter 2023 and first results since the Credit Suisse merger, in Zurich, Switzerland, ...
-        Banker und vieles mehr: Sergio Ermotti diese Woche vor den Medien, als er die Vollintegration der Credit Suisse
-        bekanntgab.bild: keystone
-        Das ist durchaus nachvollziehbar. Die UBS hat den Kauf der CS nicht gesucht, die morsche Bank wurde ihr von den
-        Bundesbehörden untergejubelt, um eine weltweite Finanzkrise abzuwenden. Ermotti findet, die UBS habe ihre
-        Schuldigkeit getan. Sein Auftritt war eine Machtdemonstration, wenngleich er rhetorisch und ästhetisch darum
-        bemüht war, diesen Eindruck zu dämpfen: keine Krawatte, heller Anzug und Sensibilität für all jene, die den Job
-        verlieren.
-
-        In der Tat ist Ermotti viel mächtiger, als es ein Bundesrat sein kann, und seit Alfred Escher hat es wohl auch
-        kaum mehr einen so einflussreichen Wirtschaftsführer gegeben. Der Chef der XXL-UBS entscheidet jetzt …
-
-        Über die Wahrnehmung des Schweizer Finanzplatzes in der Welt, denn global wird dieser mit UBS gleichgesetzt.
-        Ermotti, der Aussenminister.
-        Über die Kreditkonditionen für Hunderttausende von Klein- und Mittelunternehmen sowie die Vergabekriterien am
-        Hypothekenmarkt. Ermotti, der Wirtschaftsminister.
-        Über die Einnahmen der öffentlichen Hand. Schon vor der CS-Übernahme war die UBS die grösste Steuerzahlerin im
-        Land, sie lieferte in den letzten zehn Jahren 6 Milliarden Franken ab, ihre Angestellten nochmals 7 Milliarden.
-        Ermotti, der Finanzminister.
-        Über Sein oder Nichtsein von Events, Institutionen und Vereinen, denn die CS war der grösste Sponsor. Ermotti,
-        der Kultur- und Sportminister.
-        Allein beim vergleichsweise nebensächlichen Thema Sponsoring zeigt sich die unheimliche Macht eines einzigen
-        Mannes. Ermotti bewirkt mit Daumen hoch oder Daumen runter: ob das Zurich Film Festival in dieser Form
-        weitergeführt werden kann, das von CS-Geld abhängig ist; ob das Zürcher Stadionprojekt am Hardturm realisiert
-        wird oder nicht; ob die Fussball-Nationalteams künftig weiterhin Millionen zur Verfügung haben – just 2025, wenn
-        die bisherige Zusicherung wegfällt, findet hierzulande die Frauen-EM statt.
-
-        Was tun also? Beten für Ermotti?
-        Folgenreicher als diese Entscheide ist, wie gut die UBS geschäftet. Hier sind nicht nur Veranstaltungen, sondern
-        ist ein ganzes Land der UBS und ihrem Chef ausgeliefert. Das «Too big to fail»-Problem ist hinlänglich
-        diskutiert, aber noch nicht gelöst worden, und man fragt sich je länger, je mehr: Lässt es sich überhaupt lösen?
-        Zweifel sind angebracht, solange man beides will, einen globalen Finanzplatz mit Grossbank und zugleich keine
-        Haftungsrisiken für den Bund.
-
-        Was tun also? Beten, dass Sergio Ermotti und seine (noch) 120'000 Angestellten alles richtig machen? Das wird
-        nicht reichen.
-
-        Trotz begrenzter Wirkung braucht es regulatorische Anpassungen dort, wo sich Risiken für die Steuerzahler
-        reduzieren lassen. Zudem müssen die Rollen von Nationalbank und Finanzmarktaufsicht überprüft werden, die beim
-        CS-Kollaps nicht geglänzt haben. Und die Konkurrenten der UBS sind gefordert, aus dem Verschwinden der Credit
-        Suisse Kapital zu schlagen und den Wettbewerb zu beleben.
-
-        Eines ist klar: Auch wenn Ermotti nun das Land zu Füssen liegt, er maximiert nicht das Allgemeinwohl, sondern
-        das Wohl von Kunden und Aktionären. Sergio Ermotti ist Banker, nicht Bundesrat. (bzbasel.ch)
-      </p>
-
+      <p>He’d wake up before dawn—okay, maybe he just thought it was dawn but was actually 7 AM—and spend hours glued to his SNES, exploring the Lylat System with Fox McCloud and friends. He loved the idea of soaring through space, barrel-rolling past laser fire. But while he loved Star Fox, the honest truth was that flight freaked him out. The mere thought of real turbulence got his heart thumping in all the worst ways.</p>
+    
+      <p>In school, Bread was the quiet kid tucked away in the computer lab whenever he could sneak in. While classmates shot paper wads at each other, he tinkered with archaic machines that spat out cryptic DOS commands. He’d swap 3.5-inch floppies, try to push them in upside down at first, panic, and then (after a bit of fumbling) figure out the right way. Every time he typed a line of code in QBasic and watched something happen on screen—be it a shape or a silly message—it felt like magic.</p>
+    
+      <p>But Bread had an ambition: he wanted to join the Corneria defense force. Of course, that was more of a starry-eyed dream than any real plan—courtesy of all those hours playing Star Fox. He’d fantasize about being the next hotshot pilot, twisting and turning in an Arwing like it was second nature. He even tried out for the forces, but as soon as the flight simulator began shaking like a rickety washing machine, his knuckles turned white, and he felt more like he was about to hurl than become a hero.</p>
+    
+      <p>Turns out flight anxiety is a deal-breaker when you’re trying to navigate the cosmos. He flunked the test and was kindly shown the door. Crushed, he had to figure out a new path.</p>
+    
+      <p>Fortunately, Bread discovered that applying his fascination for computers and coding could give him that same sense of adventure—minus the panic attack at 10,000 feet. He joined an apprenticeship, learning to code day in, day out. Even when the other apprentices took breaks, Bread stuck around to tinker, hungry to build something that would set the world on fire (in a good way). He joked that he was “baking code” from scratch, mixing logic and syntax like dough and yeast. The nickname “Code Baker” stuck.</p>
+    
+      <p>Eventually, Bread created small games inspired by Star Fox, though on a way smaller scale: think pixelated ships and blocky asteroids. But to him, those were his personal starfields. Each game was another chance to explore the digital frontier, to push himself. And when he saw folks playing his little space shooters, you could see that same spark in their eyes that he got whenever he booted up Star Fox.</p>
+    
+      <p>So while Corneria’s defense force never pinned pilot wings on his chest, Bread found that his true calling was in building worlds of his own, one line of code at a time. He didn’t get to fly an Arwing in real life, but the digital universe he created was just as exciting—and a lot less sweaty for him.</p>
+    
+      <p>Today, Bread still fires up his ancient SNES when he needs a nostalgia boost. He’ll grab that old controller and blast a few space baddies, remembering how it all began. Then he’ll turn back to his latest coding project with a grin, ready to whisk up another batch of code for players everywhere to enjoy—proudly bearing the title of Code Baker, and loving every minute of it.</p>
+    
     </article>
   </div>
   <script>
@@ -384,7 +339,7 @@
     const playButton = document.getElementById('playButton');
     const pauseButton = document.getElementById('pauseButton');
     const backToTopButton = document.getElementById('backToTop');
-    const startButton = document.getElementById('startButton')
+    const startButton = document.getElementById('startButton');
 
     playButton.addEventListener('click', function () {
       audioElement.play();
@@ -397,8 +352,6 @@
     pauseButton.addEventListener('click', function () {
       audioElement.pause();
     });
-
-
   </script>
   <script src="script.js"></script>
 </body>
